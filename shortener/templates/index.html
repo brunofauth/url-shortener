@@ -1,0 +1,55 @@
+<!doctype html>
+
+<html>
+    <head>
+        <title>URL Shortener</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        >
+    </head>
+    <body>
+        <div class="container">
+            <h1 class="display-1">URL Shortener</h1>
+            {% block message %}
+            {% endblock %}
+            <form action="" method="POST" class="my-4 form-inline">
+                <input
+                    required type="url" id="url" name="url"
+                    class="form-control col"
+                    placeholder="Paste your long URL here."
+                >
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >Shrink</button>
+            </form>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Clicks</th>
+                            <th>Shortened URL</th>
+                            <th>Original long URL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in table_info %}
+                            <tr>
+                                <td>{{ row[2] }}</td>
+                                <td><a href="/{{ row[0] }}">{{ row[0] }}</a></td>
+                                <td><a href="{{ row[1] }}">{{ row[1] }}</a></td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
